@@ -1,2 +1,52 @@
-﻿# Site settings
-baseurl: "/jekyll_demo"
+# Site settings
+title: Penancefish Blog
+SEOTitle: 杨永鹏的博客 | Penancefish Blog
+header-img: img/home-bg.jpg
+email: wdyxyyp@outlook.com
+description: "关于ACM | 杨永鹏的个人Blog"
+keyword: ""
+url: "http://Penancefish.github.io"              
+baseurl: ""                             
+
+
+
+# SNS settings
+github_username:    Penancefish
+
+
+# Build settings
+highlighter: pygments
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "想做的，要做的||要做的，想做的"
+sidebar-avatar: /img/avatar-hux.jpg     # use absolute URL.
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Friends
+friends: [
+    {
+        title: "myy的博客",
+        href: "http://acing.cf/"
+    }
+]
