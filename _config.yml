@@ -1,12 +1,13 @@
 # Site settings
-title: Penancefish Blog
-SEOTitle: 杨永鹏的博客 | Penancefish Blog
+title: YYP's Blog
+SEOTitle: 杨永鹏的博客|Penancefish blog
 header-img: img/home-bg.jpg
 email: wdyxyyp@outlook.com
 description: "关于ACM | 杨永鹏的个人Blog"
 keyword: ""
 url: "http://Penancefish.github.io"              
-baseurl: ""                             
+baseurl: ""            
+gems: [jekyll-paginate]                 
 
 
 
@@ -33,7 +34,7 @@ kramdown:
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "想做的，要做的||要做的，想做的"
-sidebar-avatar: /img/avatar-hux.jpg     # use absolute URL.
+sidebar-avatar: /img/avatar-yyp.jpg     # use absolute URL.
 
 
 
