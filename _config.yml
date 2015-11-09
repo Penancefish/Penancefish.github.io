@@ -35,13 +35,10 @@ sidebar-avatar: /img/avatar-yyp.jpg     # use absolute URL.
 featured-tags: true                  # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
-# Friends
-#friends: [
-#    {
-#        title: "myy的博客",
-#        href: "http://acing.cf/"
-#    },{
-#        title: "Name 2",
-#        href: "URL 2"
-#    }
-#]
+ Friends
+friends: [
+    {
+        title: "myy的博客",
+        href: "http://acing.cf/"
+    }
+]
