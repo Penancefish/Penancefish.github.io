@@ -1,27 +1,22 @@
 # Site settings
-title: YYP's Blog
-SEOTitle: 杨永鹏的博客|Penancefish blog
+title: YYP Blog
+SEOTitle: 杨永鹏的博客 | yyp Blog
 header-img: img/home-bg.jpg
 email: wdyxyyp@outlook.com
-description: "关于ACM | 杨永鹏的个人Blog"
+description: "关于acm | 这里是 YYP 的个人博客。"
 keyword: ""
-url: "http://Penancefish.github.io"              
-baseurl: ""            
-gems: [jekyll-paginate]                 
-
-
+url: ""
+baseurl: ""
+gems: [jekyll-paginate]
 
 # SNS settings
 github_username:    Penancefish
-
 
 # Build settings
 highlighter: pygments
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
-
-
 
 # Markdown settings
 # replace redcarpet to kramdown,
@@ -36,18 +31,17 @@ sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "想做的，要做的||要做的，想做的"
 sidebar-avatar: /img/avatar-yyp.jpg     # use absolute URL.
 
-
-
 # Featured Tags
-featured-tags: true                     # whether or not using Feature-Tags
+featured-tags: true                  # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
-
-
 # Friends
-friends: [
-    {
-        title: "myy的博客",
-        href: "http://acing.cf/"
-    }
-]
+#friends: [
+#    {
+#        title: "myy的博客",
+#        href: "http://acing.cf/"
+#    },{
+#        title: "Name 2",
+#        href: "URL 2"
+#    }
+#]
