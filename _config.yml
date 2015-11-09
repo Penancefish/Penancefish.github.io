@@ -40,5 +40,8 @@ friends: [
     {
         title: "myy的博客",
         href: "http://acing.cf/"
+    },{
+        title: "tak3n的博客",
+        href: "http://tak3ncpp.github.io/"
     }
 ]
