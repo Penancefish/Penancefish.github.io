@@ -13,7 +13,7 @@ tags:
 ---
 ### 题目出处
 
-[CodeForces 258B](http://codeforces.com/problemset/problem/258/B)
+ [CodeForces 258B](http://codeforces.com/problemset/problem/258/B)
 
 ### 题目大意
 
