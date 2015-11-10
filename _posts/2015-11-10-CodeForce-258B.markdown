@@ -56,7 +56,7 @@ tags:
 
 ### AC代码
 
-··· cpp
+``` cpp
 #include<iostream>
 #include<algorithm>
 #include<cstring>
@@ -141,4 +141,4 @@ int main()
         }
 }
 
-···
+```
