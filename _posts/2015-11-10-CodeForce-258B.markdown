@@ -1,0 +1,144 @@
+---
+layout:       post
+title:        "CodeForces 258B-Little Elephant and Elections"
+subtitle:     "加练第六场C"
+date:         2015-11-10
+author:       Penancefish
+have-copyright true
+tags:
+    -CodeForces
+    -258 B
+    -DP
+    -DFS
+---
+### 题目出处
+
+    [CodeForces 258B](http://codeforces.com/problemset/problem/258/B)
+
+### 题目大意
+
+    大概意思就是给一个数字n，于是就有1，2，3……n可以分配，要给7个政党每个都随机分配一个不一样的数字，小象政党认为数字4和7是幸运数字，他希望分配给自己的数中幸运数字的
+个数严格大于其它六个政党幸运数字的和，问共有多少种分配方案。最后结果对1e9+7取余。
+
+数据范围：7<=n<=1e9.
+
+>像123456789这个数的幸运数字是2
+
+### 题目分析
+
+    由于数字太大，不可能从1遍历到n。于是转而求拥有0，1，…… 9 个幸运数字的数有多少个（因为最多只有9个幸运数字），然后再考虑分配的问题。
+
+### 测试数据
+
+>Input
+
+```
+7
+```
+
+>Output
+
+```
+0
+```
+
+>Input
+
+```
+8
+```
+
+>Output
+
+```
+1440
+```
+
+### AC代码
+
+··· cpp
+#include<iostream>
+#include<algorithm>
+#include<cstring>
+#include<cstdio>
+#define ll long long
+using namespace std;
+const int mod = 1e9 + 7;
+ll dp[15][15], lu[15], cnt, n, ans;//dp[数字长度][幸运数]用来记录对应数字的个数
+int num[15];
+//Comb求的是分配方法的个数
+void Comb(int other, int id, int me, ll method)
+{
+        if (other >= me)
+        {
+                return;
+        }
+        if (id == 7)
+        {
+                ans += method;
+                ans %= mod;
+                return;
+        }
+        for (int i = 0; i < me; i++)
+        {
+                if (lu[i])
+                {
+                        lu[i]--;
+                        Comb(other + i, id + 1, me, method * (lu[i] + 1) % mod);
+                        lu[i]++;
+                }
+        }
+}
+//dfs求的是dp数组的值
+ll dfs(int den, int lucky, bool ch)
+{
+        ll &f = dp[den][lucky];
+        if (den == 0)
+        {
+                if (!lucky)
+                {
+                        return f = 1;
+                }
+                return 0;
+        }
+        if (!ch && (~f))
+        {
+                return f;
+        }
+        int lim = ch ? num[den] : 9;
+        ll ret = 0;
+        for (int k = lim; k >= 0; k--)
+        {
+                ret += dfs(den - 1, lucky - (k == 4 || k == 7), ch && k == lim);
+        }
+        if (!ch)
+        {
+                f = ret;
+        }
+        return ret;
+}
+int main()
+{
+        while (~scanf("%I64d", &n))
+        {
+                memset(dp, -1, sizeof(dp));
+                cnt = 0, ans = 0;
+                while (n)
+                {
+                        num[++cnt] = n % 10;
+                        n /= 10;
+                }
+                for (int i = 0; i <= cnt; i++)
+                {
+                        lu[i] = dfs(cnt, i, true);
+                }
+                lu[0]--;
+                for (int i = 1; i <= cnt; i++)
+                {
+                        Comb(0, 1, i, lu[i]);
+                }
+                printf("%I64d\n", ans);
+        }
+}
+
+···
