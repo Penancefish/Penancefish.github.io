@@ -3,8 +3,8 @@ layout:            post
 title:             "CodeForces 258B-Little Elephant and Elections"
 subtitle:          "加练第六场C"
 date:              2015-11-10
-author:            Penancefish
-have-copyright：   true
+author:            "Penancefish"
+have-copyright:   true
 tags:
     - CodeForces
     - 258 B
