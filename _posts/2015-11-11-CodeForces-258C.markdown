@@ -1,0 +1,118 @@
+---
+layout:              post
+title:               "CodeForces258C-Little Elephant and LCM"
+subtitle:            "加练第六场D"
+date:                2015-11-11
+author:              "Penancefish"
+tags:
+    - CF
+    - 258C
+---
+
+### 题目出处
+
+[CodeForces 258C](http://codeforces.com/problemset/problem/258/C)
+
+### 题目大意
+
+给一个数组A，对于A中的每个数，你都可以取一个小于等于它的数，重新构成一个数组B，要求B中所有数的最小公倍数等于B中的最大数，问共有多少个这样的数组。
+
+### 题目分析
+
+枚举B数组的最大值，再逐一求出所有的可能。
+
+>Input
+
+```
+4
+1 4 3 2
+```
+
+>Output
+
+```
+15
+```
+
+>Input
+
+```
+2
+6 3
+```
+
+>Output
+
+```
+13
+```
+
+### AC代码
+
+``` cpp
+#include<iostream>
+#include<algorithm>
+#include<cstring>
+#include<cstdio>
+#include<cmath>
+#define ll long long
+using namespace std;
+const int maxn=100000;
+ll mod=1e9+7;
+int arr[maxn],factor[maxn];
+ll fast_pow(ll x,ll y)
+{
+        if(y==0)return 1;
+        ll ans=fast_pow(x,y/2);
+        ans=ans*ans%mod;
+        if(y&1)
+                ans=ans*x%mod;
+        return ans;
+}
+ll cal1(ll a,ll b)
+{
+        if(b==0)return 0;
+        else return (fast_pow(b,a)-fast_pow(b-1,a)+mod)%mod;//由于fast_pow(b,a)-fast_pow(b-1,a)的值可能为负，所以要加mod之后再模
+}
+int main()
+{
+        int n;
+        scanf("%d",&n);
+        int mx=0;
+        for(int i=0;i<n;i++)
+        {
+                scanf("%d",arr+i);
+                mx=max(mx,arr[i]);
+        }
+        sort(arr,arr+n);
+        ll res=0;
+        for(int i=1;i<=mx;i++)//枚举最大值的情况
+        {
+                int cnt=0;
+                int j=sqrt(i*(1.0));
+                //for求当前最大值的所有因子
+                for(int t=1;t<=j;t++)
+                {
+                        if(i%t==0)
+                        {
+                                factor[cnt++]=t;
+                                if(i/t!=t)factor[cnt++]=i/t;
+                        }
+                }
+                sort(factor,factor+cnt);
+                int k=lower_bound(arr,arr+n,i)-arr;//n-k是可以放当前最大值所有因子的个数
+                ll u=cal1(n-k,cnt);
+                //for计算小于当前最大值的所有情况
+                for(int t=cnt-2;t>=0;t--)
+                {
+                        if(k==0)break;
+                        int kk=lower_bound(arr,arr+k,factor[t])-arr;
+                        u=u*fast_pow(t+1,k-kk)%mod;
+                        k=kk;
+                }
+                res+=u;res%=mod;
+        }
+        printf("%I64d\n",res);
+        return 0;
+}
+```
