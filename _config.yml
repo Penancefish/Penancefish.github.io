@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: wdyxyyp@outlook.com
 description: "关于acm | 这里是 YYP 的个人博客。"
 keyword: ""
-url: ""
+url: "http://www.yypblog.com/"
 baseurl: ""
 gems: [jekyll-paginate]
 
