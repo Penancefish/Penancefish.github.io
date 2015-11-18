@@ -45,9 +45,9 @@ friends: [
         href: "http://tak3ncpp.github.io/"
     },{
         title: "guoyuxiang的博客",
-        hrep: "http://guoyuxiang.com/"
+        href: "http://guoyuxiang.com/"
     },{
         title: "xuanwo的博客",
-        hrep: "http://xuanwo.org/"
+        href: "http://xuanwo.org/"
     }
 ]
