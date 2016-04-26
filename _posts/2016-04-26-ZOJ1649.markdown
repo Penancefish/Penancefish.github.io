@@ -1,13 +1,13 @@
 ---
-layout:		post
-title: 		"ZOJ 1649 Rescue"
-subtitle: 	""
-date: 		2016-04-26
-author:		"Penancefish"
-have-copyright: 	true
+layout:            post
+title:             "ZOJ 1649"
+subtitle:          ""
+date:              2016-04-26
+author:            "Penancefish"
+have-copyright:   true
 tags:
-	- ZOJ
-	- BFS
+    - BFS
+    - ZOJ
 ---
 
 ### 题目出处
