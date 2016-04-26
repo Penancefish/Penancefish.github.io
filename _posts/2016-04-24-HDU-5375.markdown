@@ -1,0 +1,105 @@
+---
+layout:            post
+title:             "HDU 5375 Gray code"
+subtitle:          "组队赛第7场"
+date:              2016-04-24
+author:            "Penancefish"
+have-copyright:   true
+tags:
+    - HDU
+    - DP
+---
+### 题目出处
+[HDU 5375](http://acm.hdu.edu.cn/showproblem.php?pid=5375)
+
+### 题目大意
+	有T组数据，每组数据给一个字符串，该字符串由0,1,?构成，然后有一个长度和字符串长度相同的数组a[n]表示分数(1<=n<=200000)(1<=a[i]<=1000),字符串的问号处可以自由选择填0或者1，然后字符串就是一个二进制数，根据其可以生成一个格雷码，我们从左到右将格雷码为1的位置对应a[n]数组的分数加起来，求分数的最大值。输出数据样式见样例。
+
+>举个例子：如字符串是00?0,数组是1 2 4 8,我们可以把它当做0000和0010，它们对应的格雷码是0000与0011，然后第一个格雷码的分数是0分，第二个格雷码的分数是12分，所以答案是12
+
+>二进制生成格雷码方式:G[i] = B[i]^B[i+1](n-1>=i>=0),另二进制码的第n位被认为是0
+
+### 题目分析
+	用dp做的思路很清晰，构建一个二维dp[i][j],i代表第i位，j有0和1两种情况，动态转移方程就是dp[i][j] = max(dp[i-1][j],dp[i-1][j^1]+w[i])
+
+>Input
+
+```
+2
+00?0
+1 2 4 8
+????
+1 2 4 8
+···
+
+>Output
+
+```
+Case #1: 12
+Case #2: 15
+```
+
+### AC代码
+
+```cpp
+#include <set>
+#include <map>
+#include <stack>
+#include <cmath>
+#include <queue>
+#include <cstdio>
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <cstring>
+#include <iostream>
+#include <algorithm>
+#define Memset(a,val) memset(a,val,sizeof(a))
+#define PI acos(-1)
+#define rt(n)       (i == n ? '\n' : ' ')
+#define hi         printf("Hi----------\n")
+#define IN freopen("input.txt","r",stdin);
+#define OUT freopen("output.txt","w",stdout);
+#define debug(x) cout<<"Debug : ---"<<x<<"---"<<endl;
+#pragma comment(linker, "/STACK:1024000000,1024000000")
+typedef long long ll;
+using namespace std;
+const int maxn=100000+5;
+const int INF=0x3f3f3f3f;
+const double eps=1e-8;
+char a[200005]={};
+int w[200005]={};
+int dp[200005][3]={};
+int main()
+{
+    int t,cas=0;
+    scanf("%d",&t);
+    while (t--) {
+        
+        int n;
+        scanf("%s",a+1);
+        n=strlen(a+1);
+        for (int i=1; i<=n; i++) {
+            scanf("%d",&w[i]);
+        }
+        dp[0][1]=-INF;
+        for (int i=1; i<=n; i++) {
+            if (a[i]=='0') {
+                dp[i][1]=-INF;
+                dp[i][0]=max(dp[i-1][0], dp[i-1][1]+w[i]);
+            }
+            else if (a[i]=='1'){
+                dp[i][0]=-INF;
+                dp[i][1]=max(dp[i-1][1], dp[i-1][0]+w[i]);
+            }
+            else{
+                dp[i][0]=max(dp[i-1][0], dp[i-1][1]+w[i]);
+                dp[i][1]=max(dp[i-1][1], dp[i-1][0]+w[i]);
+            }
+        }
+        printf("Case #%d: ",++cas);
+        cout<<max(dp[n][0], dp[n][1])<<endl;
+    }
+    return 0;
+}
+```
