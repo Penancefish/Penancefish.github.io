@@ -1,13 +1,13 @@
 ---
-layout: 		post
-title:			"POJ 1465"
-subtitle: 		""
-date:			2016-04-27
-author:			"Penancefish"
-have-copyright:	true
+layout:			   post
+title:             "POJ 1465"
+subtitle:          ""
+date:              2016-04-27
+author:            "Penancefish"
+have-copyright:   true
 tags:
-	- BFS
-	- POJ
+    - BFS
+    - POJ
 ---
 
 ### 题目出处
