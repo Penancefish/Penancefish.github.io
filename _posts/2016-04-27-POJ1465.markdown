@@ -1,0 +1,130 @@
+---
+layout: 		post
+title:			"POJ 1465"
+subtitle: 		""
+date:			2016-04-27
+author:			"Penancefish"
+have-copyright:	true
+tags:
+	- BFS
+	- POJ
+---
+
+### 题目出处
+[POJ 1465]("http://poj.org/problem?id=1465")
+
+### 题目大意
+	先给一个N(0<=N<=4999),然后给M个0~9的数，求N的一个最小倍数，且该数由这M个数构成，不存在就输出0。(多组测试数据)
+
+### 题目分析
+	说实话，这道题要不是在BFS的练习题中，真的想不到BFS，而且这道题需要一些同余的知识。如果只是单纯的BFS每位数，并不知道什么时候会停止，于是我们用余数作为标记，这样的最多只有4999种状态。为什么这么说，来想一下，如果你跑到了一个新的数字（由于M个数字从小到大跑，而且是一位一位跑），而且这个数字模N的余数已经出现过，我们记小的那个为a，新跑出来的为b，模N的余数为k。比如说b*r+p模N正好等于0，那么是不是有a*r+p模N也是等于0的，而且结果还要更小，所以跑到余数标记过的话我们就不用跑了（对吧）。好，这样就可以写了。
+
+>Input
+
+```
+22
+3
+7
+0
+1
+
+2
+1
+1
+```
+
+>Output
+
+```
+110
+0
+```
+
+### AC代码
+
+```cpp
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include <queue>
+#include <stack>
+using namespace std;
+#define maxn 100005
+
+int arr[maxn];//记录m个数
+int ans = 0;
+int n,m;
+int view[maxn];//标记余数
+struct node {
+	int num,mod,next,ord;
+}brr[maxn];
+
+void bfs() {
+	queue<node> q;
+	while(!q.empty()) q.pop();
+
+	for(int i=1; i<=m; i++) {
+		if(!arr[i])continue;
+
+		int nmod = arr[i]%n;
+		if(!view[nmod]) {
+			brr[++ans] = (node){arr[i],nmod,-1,ans};
+			q.push(brr[ans]);
+			view[nmod] = 1;
+			if(nmod == 0) return;
+		}	
+	}
+
+	while(!q.empty()) {
+		node tmp = q.front();
+		q.pop();
+
+		for(int i=1; i<=m; i++) {
+			int nmod = (tmp.mod*10+arr[i])%n;
+			if(!view[nmod]) {
+				brr[++ans] = (node){arr[i],nmod,tmp.ord,ans};
+				q.push(brr[ans]);
+				view[nmod] = 1;
+				if(nmod == 0)return;
+			}
+		}	
+	}
+}
+
+int main() {
+	while(~scanf("%d%d",&n,&m)){
+		for(int i=1;i<=m;i++) {
+			scanf("%d",arr+i);
+		}
+
+		if(!n) {
+			puts("0");
+			continue;
+		}
+
+		ans = 0;
+		memset(view,0,sizeof(view));
+		sort(arr+1,arr+m+1);
+		bfs();
+
+		if(!view[0]) {
+			puts("0");
+		} else {
+			stack<int> s;
+			for(int i=ans; ~i; i = brr[i].next) {
+				s.push(brr[i].num);
+			}
+
+			while(!s.empty()) {
+				int tmp = s.top();
+				s.pop();
+				printf("%d",tmp);
+			}
+			puts("");
+		}
+	}
+	return 0;
+}
+```
