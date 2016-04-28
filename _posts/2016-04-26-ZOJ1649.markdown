@@ -11,7 +11,7 @@ tags:
 ---
 
 ### 题目出处
-[ZOJ 1649]("http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=649")
+[ZOJ 1649](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=649)
 
 ### 题目大意
 	Angel朋友要营救Angel，Angel的朋友非常强大，可以杀死任何遇到的守卫，但要花费1s钟的时间，并且他的朋友每走一步也要花费1s，问Angel的朋友最少要多少时间才能到Angel的位置，如果到不了，就输出"Poor ANGEL has to stay in the prison all his life."。#代表墙，a代表Angel，r代表Angel的朋友，.代表可以走的路，x代表守卫，输入n，m两个整数，代表n行m列(1<n,m<=200)。
