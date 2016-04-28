@@ -1,5 +1,5 @@
 ---
-layout:            post
+layout:			   post
 title:             "ZOJ 1649"
 subtitle:          ""
 date:              2016-04-26
