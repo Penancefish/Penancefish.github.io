@@ -1,8 +1,9 @@
 ---
-post:             layout
+layout:           post
 title:            "HDU 5380"
 subtitle:         "组队赛第八场"
 date:             2016-05-02
+author:           "Penancefish"
 have-copyright    true
 tags:
     - HDU
