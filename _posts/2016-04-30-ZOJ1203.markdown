@@ -11,7 +11,7 @@ tags:
 ---
 
 ### 题目出处
-[POJ 1203](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1203)
+[ZOJ 1203](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1203)
 
 ### 题目大意
 	给定N个城市的坐标，求可以连接N个城市的路线长度总和的最小值
