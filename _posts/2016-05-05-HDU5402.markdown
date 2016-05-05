@@ -45,6 +45,7 @@ tags:
 ```
 
 >Output
+
 ```
 25
 RRDLLDRR
@@ -53,6 +54,7 @@ DRRURDRURDDLLLLLDRRRRR
 69
 RRRDLLLDRDRURDDLLLDRRR
 ```
+
 ### AC代码
 
 ```cpp
