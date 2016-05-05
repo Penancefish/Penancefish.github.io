@@ -1,0 +1,206 @@
+---
+layout:              post
+title:               "HDU 5402"
+author:              "Penancefish"
+date:                2016-05-05
+have-copyright:      true
+tags:
+    - HDU
+    - 模拟
+    - 棋盘染色
+---
+
+### 题目出处
+[HDU 5402](http://acm.hdu.edu.cn/showproblem.php?pid=5402)
+
+### 题目大意
+	给一个n*m的矩阵，每个格子有不同的值，想知道如何从（1,1）点走到（n，m）点使得路径上的值加起来最大，用U,D,L,R输出怎么走的。
+
+### 题目分析
+	很容易发现当n或m为奇数时，能走到所有的格子，所以重点是都是偶数的时候。如果我们将起点染成黑色，然后从起点能到的地方染成白色，依次类推就会
+	发现起点和终点都是黑色，又知道染完色后黑白色是一样多的，所以有一个白色区域走不到。我们找到值最小的白色区域，绕过它就可以了。(
+	多给了几组数据)
+
+>Input
+
+```
+3 3
+2 3 3
+3 3 3
+3 3 2
+4 6
+3 3 2 3
+3 3 3 3
+3 3 3 3
+3 3 3 3
+3 3 3 3
+3 3 3 3
+6 4
+3 3 3 3
+3 3 3 3
+3 3 3 3
+2 3 3 3
+3 3 3 3
+3 3 3 3
+```
+
+>Output
+```
+25
+RRDLLDRR
+68
+DRRURDRURDDLLLLLDRRRRR
+69
+RRRDLLLDRDRURDDLLLDRRR
+```
+### AC代码
+
+```cpp
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include <queue>
+using namespace std;
+int ans,n,m,vx,vy;
+int mp[105][105];
+//n是奇数的时候不停地像蛇形一样的从右边开始跑就行了
+void Out1() {
+	printf("%d\n",ans);
+
+	for(int i=1; i<=m-1; i++) {
+		printf("%c",'R');
+	}
+
+	if(n == 1) {
+		puts("");
+	} else {
+		int cnt = n/2;
+
+		for(int i=1; i<=cnt; i++) {
+			putchar('D');
+			for(int j=1; j<=m-1; j++) {
+				putchar('L');
+			}
+			putchar('D');
+			for(int j=1; j<=m-1; j++) {
+				putchar('R');
+			}
+		}
+
+		puts("");
+	}
+}
+//只有m是奇数的时候，是朝下像蛇形一样的跑
+void Out2() {
+	printf("%d\n",ans);
+
+	for(int i=1; i<=n-1; i++) {
+		printf("%c",'D');
+	}
+
+	if(m == 1) {
+		puts("");
+	} else {
+		int cnt = m/2;
+
+		for(int i=1; i<=cnt; i++) {
+			putchar('R');
+			for(int j=1; j<=n-1; j++) {
+				putchar('U');
+			}
+			putchar('R');
+			for(int j=1; j<=n-1; j++) {
+				putchar('D');
+			}
+		}
+
+		puts("");
+	}
+}
+//我们把输出分为三部分（第一，第三部分可以没有），第二部分就是重点（就是让开白色区最小值的部分）
+void Out3() {
+	int h =0;
+	int cnt = (vx-1)/2;//跑几次第一部分
+//第一部分
+	for(int i=1; i<=cnt; i++) {
+		for(int j=1; j<=m-1; j++) {
+			putchar('R');
+		}
+		putchar('D');
+		for(int j=1; j<=m-1; j++) {
+			putchar('L');
+		}
+		putchar('D');
+	}
+
+	h+=cnt*2;//为了计算第三部分跑几次
+	cnt = (vy-1)/2;//跑几次“下，右，上，左”
+
+	for(int i=1; i<=cnt; i++) {
+		putchar('D');
+		putchar('R');
+		putchar('U');
+		putchar('R');
+	}
+	//如果白色区域的y值是偶数，在跑完上面的步骤之后要多一个“下，右”
+	//如果白色区域的y值是奇数，在绕开之前要先单独跑一个“右，下”（自己模拟一下就清楚了）
+	if(vy%2 == 0) {
+		putchar('D');
+		putchar('R');
+	} else {
+		putchar('R');
+		putchar('D');
+	}
+
+	cnt = (m-vy)/2;
+	//又是重复部分，跑完第二部分剩下的
+	for(int i=1; i<=cnt; i++) {
+		putchar('R');
+		putchar('U');
+		putchar('R');
+		putchar('D');
+	}
+
+	h+=2;
+	cnt = (n-h)/2;
+	//第三部分
+	if(cnt) {
+		for(int i=1; i<=cnt; i++) {
+			putchar('D');
+			for(int j=1; j<=m-1; j++) {
+				putchar('L');
+			}
+			putchar('D');
+			for(int j=1; j<=m-1; j++) {
+				putchar('R');
+			}
+		}
+	}
+	puts("");
+}
+
+int main() {
+	while(~scanf("%d%d",&n,&m)) {
+		ans = 0;
+		vx = 1,vy = 2;
+		for(int i=1; i<=n; i++) {
+			for(int j=1; j<=m; j++) {
+				scanf("%d",mp[i]+j);
+				ans+=mp[i][j];
+				if(mp[i][j]<mp[vx][vy] && (i+j)&1)vx=i,vy=j;//保证记录的最小值是白色区域
+			}
+		}
+		if(n&1) {
+			Out1();
+		} else if(m&1){
+			Out2();
+		} else {
+			printf("%d\n",ans-mp[vx][vy]);
+			Out3();
+		}
+	}
+	return 0;
+}
+```
