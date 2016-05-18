@@ -5,8 +5,7 @@ subtitle:            "加练第六场D"
 date:                2015-11-11
 author:              "Penancefish"
 tags:
-    - CF
-    - 258C
+    - CodeForces
 ---
 
 ### 题目出处

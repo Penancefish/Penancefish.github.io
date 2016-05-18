@@ -7,13 +7,12 @@ author:            "Penancefish"
 have-copyright:   true
 tags:
     - CodeForces
-    - 258 B
     - DP
     - DFS
 ---
 ### 题目出处
 
- [CodeForces 258C](http://codeforces.com/problemset/problem/258/B)
+[CodeForces 258B](http://codeforces.com/problemset/problem/258/B)
 
 ### 题目大意
 
