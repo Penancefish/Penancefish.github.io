@@ -6,7 +6,7 @@ email: wdyxyyp@outlook.com
 description: "关于acm | 这里是 YYP 的个人博客。"
 keyword: ""
 url: "http://penancefish.github.io/"
-baseurl: ""
+baseurl: "http://penancefish.github.io/"
 gems: [jekyll-paginate]
 
 # SNS settings
